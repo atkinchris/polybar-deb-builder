@@ -1,4 +1,6 @@
-FROM debian:stretch
+FROM ruby:stretch
+
+RUN gem install --no-ri --no-rdoc fpm
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -yqq update && apt-get -yqq --no-install-recommends install \

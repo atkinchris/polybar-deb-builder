@@ -13,6 +13,16 @@ mkdir build
 cd build
 cmake ..
 make
+mkdir -p /tmp/contents
+make DESTDIR=/tmp/contents install
 
-pwd
-ls
+# Build the package
+fpm -s dir -t deb \
+	-C /tmp/contents \
+	--name "polybar" \
+	--version $TAG \
+	--iteration 1 \
+	--description "A fast and easy-to-use status bar" \
+	.
+
+cp *.deb /output
