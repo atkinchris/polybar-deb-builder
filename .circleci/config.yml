@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.8
+    working_directory: /tmp/builder
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: make
+      - store_artifacts:
+          path: ./output
